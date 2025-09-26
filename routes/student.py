@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException,status
 from sqlalchemy.orm import Session
 from database import get_db
 from schemas import student
+from fastapi.responses import JSONResponse
 from repositories.student_query import StudentQuery
 
 router = APIRouter(prefix="/students", tags=["Students"])
@@ -19,7 +20,7 @@ def get_student(student_id: str, db: Session = Depends(get_db)):
     student = StudentQuery.get_student_query(student_id, db)
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
-    return student
+    return JSONResponse(status_code=status.HTTP_200_OK,content={"message":"students data fetched successfully","data":student})
 
 @router.put("/{student_id}", response_model=student.Student)
 def update_student(student_id: str, student: student.StudentUpdate, db: Session = Depends(get_db)):
