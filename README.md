@@ -57,7 +57,10 @@ Routes, Queries, Models, Schemas, and Utils organized separately
 
 
 
+
+
 **🧩 API Endpoints Summary**
+
 | Category                  | Method | Endpoint                      | Description     |
 | ------------------------- | ------ | ----------------------------- | --------------- |
 | **Authentication_System** | POST   | `/user/register`              | Register user   |
