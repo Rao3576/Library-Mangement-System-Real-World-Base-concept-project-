@@ -57,7 +57,25 @@ Routes, Queries, Models, Schemas, and Utils organized separately
 
 
 
+**🧩 API Endpoints Summary**
+| Category                  | Method | Endpoint                      | Description     |
+| ------------------------- | ------ | ----------------------------- | --------------- |
+| **Authentication_System** | POST   | `/user/register`              | Register user   |
+|                           | GET    | `/user/verify-email`          | Verify email    |
+|                           | POST   | `/user/login`                 | User login      |
+| **OAuth2 & JWT**          | GET    | `/Oauth/auth/google`          | Google login    |
+|                           | GET    | `/Oauth/auth/google/callback` | Google callback |
+|                           | POST   | `/Oauth/refresh-token`        | Refresh token   |
+|                           | POST   | `/Oauth/logout`               | Logout user     |
+| **Roles**                 | GET    | `/roles/`                     | Read roles      |
+|                           | POST   | `/roles/`                     | Create role     |
 
+
+
+**🏆 About This Project**
+
+This FastAPI-based Library Management System demonstrates a production-level architecture with authentication, authorization, and OAuth2 integration.
+It’s suitable for learning, extending to full enterprise applications, or showcasing as a professional portfolio project.
 
 
 
