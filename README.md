@@ -57,44 +57,7 @@ Routes, Queries, Models, Schemas, and Utils organized separately
 
 
 
-**🗂️ Project Structure**
-app/
-│
-├── main.py
-├── database.py
-│
-├── config/
-│   └── user.py
-│
-├── models/
-│   ├── user.py
-│   ├── role.py
-│   ├── author.py
-│   └── book.py
-│
-├── schemas/
-│   ├── user.py
-│   ├── role.py
-│   ├── author.py
-│   └── book.py
-│
-├── routes/
-│   ├── auth_routes.py
-│   ├── oauth_routes.py
-│   ├── role_routes.py
-│   ├── author_routes.py
-│   └── book_routes.py
-│
-├── queries/
-│   ├── user_query.py
-│   ├── role_query.py
-│   ├── author_query.py
-│   └── book_query.py
-│
-└── utils/
-    ├── token.py
-    ├── auth_utils.py
-    └── verify_email.py
+
 
 
 
