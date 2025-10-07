@@ -64,4 +64,3 @@ class StudentQuery:
         result = db.execute(query, {"student_id": student_id})
         db.commit()
         return result.rowcount > 0
-
