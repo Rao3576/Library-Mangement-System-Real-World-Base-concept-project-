@@ -1,5 +1,37 @@
-/venv
-/.env
-/*/*__pycache__
-/*__pycache__
-/.*.json
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ---- Virtual Environment ----
+venv/
+.env/
+.env
+
+# ---- IDE / Editor ----
+.vscode/
+.idea/
+
+# ---- Environment and Config ----
+*.env
+*.ini
+*.cfg
+
+# ---- JSON Secrets ----
+client_secret.json
+*_secret.json
+*.secrets.json
+
+# ---- Alembic / Migration Cache ----
+migrations/__pycache__/
+alembic/__pycache__/
+
+# ---- Logs & Misc ----
+*.log
+*.sqlite3
+*.db
+.DS_Store
+
+# ---- Byte-compiled / Cache ----
+*/__pycache__/
