@@ -1,3 +1,30 @@
+# from fastapi import APIRouter, Depends
+# from sqlalchemy.orm import Session
+# from database import get_db
+# from repositories.role_query import RoleQuery
+
+# router = APIRouter(prefix="/role", tags=["Role & Permission"])
+
+
+# # ✅ Role Routes
+# @router.post("/create")
+# def create_role(name: str, description: str = None, db: Session = Depends(get_db)):
+#     return RoleQuery.create_role(db, name, description)
+
+# @router.get("/list")
+# def get_roles(db: Session = Depends(get_db)):
+#     return RoleQuery.get_roles(db)
+
+
+# @router.delete("/{role_id}")
+# def delete_role(role_id: int, db: Session = Depends(get_db)):
+#     return RoleQuery.delete_role(db, role_id)
+
+
+
+
+
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
@@ -18,6 +45,7 @@ router = APIRouter(prefix="/roles", tags=["Roles"])
 @router.post("/", response_model=RoleOut)
 def create_role(role: RoleCreate, db: Session = Depends(get_db),
                 current_user=Depends(require_role_in(["admin"]))):
+    
     new_role = create_role_query(db, role.name, role.description)
     return JSONResponse(status_code=status.HTTP_201_CREATED, content={"status": True, "data": new_role.__dict__})
 

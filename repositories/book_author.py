@@ -7,7 +7,7 @@ class BookAuthorQuery:
     @staticmethod
     def create_book_author_query(ba: book_author.BookAuthorCreate, db: Session):
         sql = text("""
-            INSERT INTO BookAuthor (Book_id, Author_id)
+            INSERT INTO Book_Author (Book_id, Author_id)
             VALUES (:Book_id, :Author_id)
         """)
         db.execute(sql, ba.dict())
@@ -16,13 +16,13 @@ class BookAuthorQuery:
 
     @staticmethod
     def list_book_authors_query(db: Session):
-        result = db.execute(text("SELECT * FROM BookAuthor")).fetchall()
+        result = db.execute(text("SELECT * FROM Book_Author")).fetchall()
         return [dict(r._mapping) for r in result]
 
     @staticmethod
     def get_book_author_query(book_id: str, author_id: str, db: Session):
         result = db.execute(
-            text("SELECT * FROM BookAuthor WHERE Book_id = :bid AND Author_id = :aid"),
+            text("SELECT * FROM Book_Author WHERE Book_id = :bid AND Author_id = :aid"),
             {"bid": book_id, "aid": author_id}
         ).fetchone()
         return dict(result._mapping) if result else None
@@ -30,8 +30,9 @@ class BookAuthorQuery:
     @staticmethod
     def delete_book_author_query(book_id: str, author_id: str, db: Session):
         db.execute(
-            text("DELETE FROM BookAuthor WHERE Book_id = :bid AND Author_id = :aid"),
+            text("DELETE FROM Book_Author WHERE Book_id = :bid AND Author_id = :aid"),
             {"bid": book_id, "aid": author_id}
         )
         db.commit()
         return {"deleted": {"Book_id": book_id, "Author_id": author_id}}
+

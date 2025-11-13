@@ -11,6 +11,9 @@ from .transaction import Transaction
 from .student import Student
 from .auth_user import User
 
+from .permission import Permission   # ✅ Fixed import
+from .role_user import UserRole      # ✅ Add this too
+
 
 
 

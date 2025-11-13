@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     DB_PORT:Optional[int]
     DB_NAME:Optional[str]
     DB_CONNECTION:Optional[str]
+    DB_DRIVER:Optional[str]
 
     
     SECRET_KEY: str
@@ -22,10 +23,19 @@ class Settings(BaseSettings):
     
     GOOGLE_CLIENT_ID:str
     GOOGLE_CLIENT_SECRET:str
+    
 
 
     class Config:
         env_file = ".env"
+
+
+      
+class setting:
+	PROJECT_NAME="websocket_project"
+	PROJECT_VERSION="0.1.1"
+
+      
 
     
 settings = Settings()

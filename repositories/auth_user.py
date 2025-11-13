@@ -1,3 +1,54 @@
+# from fastapi import HTTPException, status
+# from sqlalchemy.orm import Session
+# from fastapi.responses import JSONResponse
+# from datetime import timedelta
+# from utils.auth_user import create_tokens
+# from models.auth_user import User, UserRole
+# from utils.auth_user import verify_password
+# from config.config import settings
+
+# class AuthUserQuery:
+#     @staticmethod
+#     def login_user(form_data, db: Session):
+#         # 1️⃣ Check if user exists
+#         user = db.query(User).filter(User.email == form_data.email).first()
+#         if not user:
+#             raise HTTPException(status_code=404, detail="User not found")
+
+#         # 2️⃣ Verify password
+#         if not verify_password(form_data.password, user.hashed_password):
+#             raise HTTPException(status_code=400, detail="Invalid credentials")
+
+#         # 3️⃣ Get user role
+#         user_role = db.query(UserRole).filter(UserRole.user_id == user.id).first()
+#         role_name = user_role.role.name if user_role else "user"
+
+#         # 4️⃣ Generate access token with role
+#         access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+#         access_token = create_access_token(
+#             data={"sub": user.email, "user_id": user.id, "role": role_name},
+#             expires_delta=access_token_expires
+#         )
+
+#         # 5️⃣ Return token as JSON
+#         return JSONResponse(
+
+            
+#         content={
+#                 "access_token": access_token,
+#                 "token_type": "bearer",
+#                 "role": role_name
+#             },
+#             status_code=200
+#         )
+
+
+
+
+
+
+
+
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 from fastapi.responses import JSONResponse
@@ -72,9 +123,11 @@ class UserQuery:
 
         if not user.is_verified:
             raise HTTPException(status_code=401, detail="Email not verified")
+        
 
         # Convert SQLAlchemy model → Pydantic schema
-        user_data = schemas.auth_user.UserOut.model_validate(user)
+        user_data = schemas.auth_user.UserOut.model_validate(user, from_attributes=True)
+
         user_dict = user_data.model_dump()
 
         # Create tokens
@@ -93,7 +146,7 @@ class UserQuery:
         )
 
 
-    # ✅ Send password reset link
+    # ✅ Send reset password email
     @staticmethod
     def send_reset_password_email(email: str, db: Session):
         user = db.query(User).filter(User.email == email).first()
@@ -101,17 +154,17 @@ class UserQuery:
             raise HTTPException(status_code=404, detail="No user found with this email")
 
         reset_token = create_reset_token({"sub": user.email})
-        reset_link = f"http://localhost:8000/user/reset-password?token={reset_token}"
+        # Point to GET route for HTML display
+        reset_link = f"http://localhost:8000/user/reset-password-form?token={reset_token}"
 
-        # send reset email
         send_email(user.email, "reset", reset_link)
 
         return JSONResponse(
             content={"message": f"Password reset link sent to {user.email}"},
-            status_code=200
+            status_code=status.HTTP_200_OK
         )
 
-    # ✅ Reset password
+    # ✅ Actually reset the password
     @staticmethod
     def reset_user_password(token: str, new_password: str, db: Session):
         payload = verify_reset_token(token)
@@ -127,5 +180,6 @@ class UserQuery:
 
         return JSONResponse(
             content={"message": "Password has been reset successfully"},
-            status_code=200
+            status_code=status.HTTP_200_OK
         )
+    

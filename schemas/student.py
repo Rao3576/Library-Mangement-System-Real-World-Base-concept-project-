@@ -1,26 +1,21 @@
-from pydantic import BaseModel, EmailStr
-from datetime import date, datetime
-from typing import Optional
+from pydantic import BaseModel
 
-# ---------------------------
-# Student
-# ---------------------------
 class StudentBase(BaseModel):
+    id: str
     student_name: str
-    Email: EmailStr
+    Email: str
     Address: str
     Status: bool
 
 class StudentCreate(StudentBase):
-    student_id: str
+    pass
 
 class StudentUpdate(BaseModel):
-    student_name: Optional[str] = None
-    Email: Optional[EmailStr] = None
-    Address: Optional[str] = None
-    Status: Optional[bool] = None
+    student_name: str | None = None
+    Email: str | None = None
+    Address: str | None = None
+    Status: bool | None = None
 
 class Student(StudentBase):
-    student_id: str
     class Config:
         orm_mode = True

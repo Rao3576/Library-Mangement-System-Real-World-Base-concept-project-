@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Integer, Boolean, Date, DateTime, DECIMAL, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
-from models import *
+
 
 
 class Publisher(Base):

@@ -24,3 +24,4 @@ def get_book_author(book_id: str, author_id: str, db: Session = Depends(get_db))
 @router.delete("/{book_id}/{author_id}")
 def delete_book_author(book_id: str, author_id: str, db: Session = Depends(get_db)):
     return BookAuthorQuery.delete_book_author_query(book_id, author_id, db)
+
