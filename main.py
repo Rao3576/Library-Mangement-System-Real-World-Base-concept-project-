@@ -128,6 +128,7 @@ app.include_router(chat_routes)
 app.include_router(web_soucket_auth_routes)
 
 
+
 @app.get("/")
 async def home(request: Request):
     return templates.TemplateResponse("chat_room.html", {"request": request})

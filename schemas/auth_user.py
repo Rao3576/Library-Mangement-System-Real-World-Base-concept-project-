@@ -1,5 +1,5 @@
 # app/schemas.py
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr,Optional
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -11,7 +11,6 @@ class UserOut(BaseModel):
     email: str
     is_active: bool
     is_verified: bool
-
     class Config:
         orm_mode = True
 
