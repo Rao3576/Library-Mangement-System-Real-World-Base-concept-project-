@@ -12,10 +12,11 @@ DB_PASSWORD = settings.DB_PASSWORD
 DB_HOST = settings.DB_HOST
 DB_PORT = str(settings.DB_PORT)  # Ensure it's a string
 DB_DATABASE = settings.DB_NAME
+DB_DRIVER=settings.DB_DRIVER
 
 if DB_PASSWORD:
     encoded_password = urllib.parse.quote_plus(DB_PASSWORD)
-    DATABASE_URL = f"{DB_CONNECTION}+pymysql://{DB_USERNAME}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+    DATABASE_URL = f"{DB_CONNECTION}+{DB_DRIVER}://{DB_USERNAME}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 
 # Set up SQLAlchemy
 engine = create_engine(
