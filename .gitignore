@@ -1,11 +1,4 @@
-# /venv
-# /.env
-# /*/*__pycache__
-# /*__pycache__
-# .*json
-venv/
-.env
-.client_secret.json
-__pycache__/
-*.pyc
-client_secret.json
+/venv
+/.env
+/*/*__pycache__
+./*__pycache__
