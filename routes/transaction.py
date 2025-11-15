@@ -12,6 +12,7 @@ def create_transaction(tx: transaction.TransactionCreate, db: Session = Depends(
 
 @router.get("/", response_model=list[transaction.Transaction])
 def list_transactions(db: Session = Depends(get_db)):
+    
     return TransactionQuery.list_transactions_query(db)
 
 @router.get("/{tx_id}", response_model=transaction.Transaction)

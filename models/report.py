@@ -4,7 +4,6 @@ from database import Base
 
 
 
-
 class Report(Base):
     __tablename__ = "Report"
     Report_id = Column(String(255), primary_key=True)

@@ -11,3 +11,4 @@ class Author(Base):
     Nationality = Column(String(255), nullable=False)
 
     books = relationship("BookAuthor", back_populates="author")
+    
